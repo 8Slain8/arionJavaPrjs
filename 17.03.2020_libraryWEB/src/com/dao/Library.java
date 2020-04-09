@@ -1,0 +1,66 @@
+package com.dao;
+
+import com.data.Book;
+
+public class Library {
+    public Book[] books;
+    private int size;
+
+    public Library(int capacity){
+        books = new Book[capacity];
+        size = 0;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public boolean addBook(Book book){
+        if(size<books.length){
+            books[size] = book;
+            size++;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean deleteBook(Book book){
+        System.out.println("current size of library is "+ size);
+        for (int i = 0; i < size; i++) {
+            if(books[i].equals(book)){
+                books[i] = books[size-1];
+                size --;
+                System.out.println("size of library is "+size);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void display(){
+        for (int i = 0; i < size; i++) {
+            System.out.println(books[i]);
+        }
+    }
+
+    public void searchBookByAuthor(String author){
+        boolean flag = false;
+        for (int i = 0; i < size; i++) {
+            if(books[i].getAuthor().equalsIgnoreCase(author)){
+                System.out.println(books[i]);
+                flag = true;
+            }
+        }
+        if(!flag){
+            System.out.println("not found");
+        }
+    }
+    public int getOldestYearOfBook() {
+        int oldestYearOfIssue = books[0].getDateOfIssue();
+        for (int i = 0; i < size; i++) {
+            if (oldestYearOfIssue > books[i].getDateOfIssue()) oldestYearOfIssue = books[i].getDateOfIssue();
+
+        }
+        return oldestYearOfIssue;
+    }
+}
