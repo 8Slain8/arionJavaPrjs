@@ -1,7 +1,8 @@
 package app;
 
 public class StringEndUp {
-    public String endUp(String str){
+
+    public static String endUp(String str){
         int length = str.length();
         String newStr = null;
 /*        for (int i = 0; i < str.length(); i++) {
